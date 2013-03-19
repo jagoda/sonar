@@ -192,7 +192,18 @@ describe("A Request", function () {
         }
         
         request.end();
-        expect(callingWrite).to.throw(/request has ended/);
+        expect(callingWrite).to.throw(/request has already ended/);
+    });
+    
+    it("cannot call end twice", function () {
+        var request = new Request();
+        
+        function callingEndTwice () {
+            request.end();
+            request.end();
+        }
+        
+        expect(callingEndTwice).to.throw(/request has already ended/);
     });
     
     it("can specify a 'receiving' encoding", function (done) {
@@ -209,6 +220,49 @@ describe("A Request", function () {
         captureData(request, checkData);
         request.write(new Buffer("hello", ENCODING));
         request.end();
+    });
+    
+    it("can specify a 'sending' encoding", function (done) {
+        var request = new Request();
+        
+        function checkData (error, data) {
+            expect(error).to.be.null;
+            expect(data).to.deep.equal([ "hello" ]);
+            done();
+        }
+        
+        request.setEncoding("utf-8");
+        captureData(request, checkData);
+        request.write("68656c6c6f", "hex");
+        request.end();
+    });
+    
+    it("can terminate with a message", function (done) {
+        var request = new Request();
+        
+        function checkData (error, data) {
+            expect(error).to.be.null;
+            expect(data).to.deep.equal([ "hello" ]);
+            done();
+        }
+        
+        request.setEncoding("utf-8");
+        captureData(request, checkData);
+        request.end("hello");
+    });
+    
+    it("can specify a 'sending' encoding when terminating", function (done) {
+        var request = new Request();
+        
+        function checkData (error, data) {
+            expect(error).to.be.null;
+            expect(data).to.deep.equal([ "hello" ]);
+            done();
+        }
+        
+        request.setEncoding("utf-8");
+        captureData(request, checkData);
+        request.end("68656c6c6f", "hex");
     });
 
 });
