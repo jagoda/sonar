@@ -14,10 +14,8 @@
   },
   "author": "Jeff Jagoda <jeffrey.jagoda@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "chasis": "0.0.0"
-  },
   "devDependencies": {
-    "chai": "~1.5.0"
+    "chai": "~1.5.0",
+    "chasis": "0.0.0"
   }
 }
