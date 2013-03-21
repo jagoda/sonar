@@ -4,9 +4,9 @@
   "description": "HTTP request simulation tools.",
   "main": "lib/index.js",
   "scripts": {
-    "coverage": "chasis coverage",
+    "coverage": "NODE_ENV=test chasis coverage",
     "pretest": "chasis lint",
-    "test": "chasis test"
+    "test": "NODE_ENV=test chasis test"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "~1.5.0",
-    "chasis": "0.0.0"
+    "chasis": "0.0.0",
+    "connect": "~2.7.3"
   }
 }

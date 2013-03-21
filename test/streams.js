@@ -9,7 +9,11 @@ function captureData (stream, callback) {
             var data = buffer;
             
             buffer = null;
-            callback(null, data);
+            // Processing of the captured data should occur in a different call
+            // stack than the stream processing.
+            process.nextTick(function () {
+                callback(null, data); }
+            );
         }
     }
     
@@ -22,6 +26,8 @@ function captureData (stream, callback) {
     stream.on("data", updateBuffer);
     stream.on("end", endStream);
 }
+
+streams.captureData = captureData;
 
 streams.itIsAPassThroughStream = function (createStream) {
     
