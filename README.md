@@ -2,15 +2,16 @@ sonar
 =====
 
 Sonar is a test tool for HTTP server instances in NodeJS. Sonar can be used with
-most unit test frameworks to test native HTTP server instances, Connect
-instances, and Express instances -- all without having to  call `listen`.
+most unit test frameworks to test [native HTTP server instances][1],
+[Connect][2] instances, and [Express][3] instances -- all without having to
+call `listen`.
 
 ## Basic Usage
 
 Sonar works by wrapping a handler or application instance and exposing a simple
 HTTP API for generating sythentic request/response objects. By default, Sonar
 will capture all resulting response data and place it in the `body` attribute
-of the response. HTML responses are parsed using [jsdom][1] with "jQueryify"
+of the response. HTML responses are parsed using [jsdom][4] with "jQueryify"
 support for DOM navigation. For example, a simple test of the page title might
 look like:
 
@@ -49,7 +50,7 @@ following options are available:
     passed two arguments, `(error, response)`.
 
 Simulates a request to the handler. Returns a request object similar to
-[http.IncomingMessage][2].
+[http.IncomingMessage][5].
 
 ## For the Slightly More Adventurous
 
@@ -73,5 +74,8 @@ instances directly if desired. For example:
 
  + **request** - The request to be responded to.
 
-[1]: https://github.com/tmpvar/jsdom "jsdom"
-[2]: http://nodejs.org/api/http.html#http_http_incomingmessage "IncomingMessage"
+[1]: http://nodejs.org/api/http.html#http_http_createserver_requestlistener "HTTP Server"
+[2]: https://github.com/senchalabs/connect "Connect"
+[3]: http://expressjs.com/ "Express"
+[4]: https://github.com/tmpvar/jsdom "jsdom"
+[5]: http://nodejs.org/api/http.html#http_http_incomingmessage "IncomingMessage"
