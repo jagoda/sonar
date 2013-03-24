@@ -8,6 +8,8 @@ call `listen`.
 
 ## Basic Usage
 
+    npm install sonar
+
 Sonar works by wrapping a handler or application instance and exposing a simple
 HTTP API for generating sythentic request/response objects. By default, Sonar
 will capture all resulting response data and place it in the `body` attribute
