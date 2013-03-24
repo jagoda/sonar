@@ -3,14 +3,14 @@ sonar
 
 Sonar is a test tool for HTTP server instances in NodeJS. Sonar can be used with
 most unit test frameworks to test native HTTP server instances, Connect
-instances, and Express instances -- all without having to  call listen.
+instances, and Express instances -- all without having to  call `listen`.
 
 ## Basic Usage
 
 Sonar works by wrapping a handler or application instance and exposing a simple
 HTTP API for generating sythentic request/response objects. By default, Sonar
 will capture all resulting response data and place it in the `body` attribute
-on the response. HTML responses are parsed using [jsdom][1] with "jQueryify"
+of the response. HTML responses are parsed using [jsdom][1] with "jQueryify"
 support for DOM navigation. For example, a simple test of the page title might
 look like:
 
@@ -33,9 +33,9 @@ gather all other responses into the `body` attribute as text.
 Creates a new `sonar` instance by wrapping an application or handler. The
 following options are available:
 
- + **parseBody**: _Defaults to true_. When `true`, Sonar will buffer and attempt
-    to parse the response contents based on the response type. If set to
-    `false`, the request callback is responsible for calling
+ + **parseBody** - _Defaults to true_. When `true`, Sonar will buffer and
+    attempt to parse the response contents based on the response content type.
+    If set to `false`, the request callback is responsible for calling
     `response.on("data", . . .)` and `response.on("end", . . .)` itself.
 
 ### sonar.get(path, [headers], callback)
@@ -69,13 +69,9 @@ instances directly if desired. For example:
  + **path** - _Defaults to "/"_. The path to request.
  + **httpVersion** - _Defaults to "1.1"_. The HTTP protocol version.
 
-Create a `Request` instance suitable for passing to HTTP server instances.
-
 ### sonar.Response(request)
 
  + **request** - The request to be responded to.
-
-Create a `Response` instance suitable for passing to HTTP server instances.
 
 [1]: https://github.com/tmpvar/jsdom "jsdom"
 [2]: http://nodejs.org/api/http.html#http_http_incomingmessage "IncomingMessage"
