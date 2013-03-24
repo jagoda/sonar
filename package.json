@@ -14,10 +14,13 @@
   },
   "author": "Jeff Jagoda <jeffrey.jagoda@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+    "connect": "~2.7.3",
+    "jsdom": "~0.5.3"
+  },
   "devDependencies": {
     "chai": "~1.5.0",
     "chasis": "0.0.0",
-    "connect": "~2.7.3",
     "express": "~3.1.0"
   }
 }

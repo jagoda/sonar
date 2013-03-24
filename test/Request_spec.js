@@ -1,5 +1,6 @@
 var connect                = require("connect"),
     expect                 = require("chai").expect,
+    express                = require("express"),
     EventEmitter           = require("events").EventEmitter,
     IncomingMessage        = require("http").IncomingMessage,
     itIsAPassThroughStream = require("./streams").itIsAPassThroughStream,
@@ -131,6 +132,14 @@ describe("A Request", function () {
         
         request.headers.FOO = "bar";
         expect(request.headers).to.have.property("FOO", "bar");
+        
+        expect(request.headers).to.not.have.property("hello");
+        var old = request.setHeader("Hello", "world");
+        expect(request.headers).to.have.property("hello", "world");
+        expect(old).to.be.undefined;
+        old = request.setHeader("hello", "again");
+        expect(old).to.equal("world");
+        expect(request.headers).to.have.property("hello", "again");
     });
     
     it("uses the 'chunked' transfer encoding by default", function () {
@@ -174,11 +183,46 @@ describe("A Request", function () {
                 done();
             });
             
-            request.headers["content-type"] = "application/json";
+            request.setHeader("Content-Type", "application/json");
             app(request, response);
             request.end("{ \"hello\": \"world\" }");
         });
 
+    });
+    
+    describe("is compatible with Express and", function () {
+    
+        it("can be routed to a handler", function (done) {
+            var app      = express(),
+                request  = new Request("/path"),
+                response = new Response(request);
+                
+            app.get("/path", function (request, response) {
+                done();
+            });
+            app(request, response);
+        });
+        
+        it("can send a JSON payload", function (done) {
+            var app      = express(),
+                request  = new Request("GET", "/path"),
+                response = new Response(request);
+                
+            app.use(connect.middleware.json());
+            app.get("/path", function (request, response) {
+                expect(request.body).to.deep.equal(
+                    {
+                        hello: "world"
+                    }
+                );
+                done();
+            });
+            
+            request.setHeader("Content-Type", "application/json");
+            app(request, response);
+            request.end("{ \"hello\": \"world\" }");
+        });
+    
     });
 
 });
