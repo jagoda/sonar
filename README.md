@@ -75,7 +75,7 @@ instances directly if desired. For example:
  + **request** - The request to be responded to.
 
 [1]: http://nodejs.org/api/http.html#http_http_createserver_requestlistener "HTTP Server"
-[2]: https://github.com/senchalabs/connect "Connect"
+[2]: http://www.senchalabs.org/connect/ "Connect"
 [3]: http://expressjs.com/ "Express"
 [4]: https://github.com/tmpvar/jsdom "jsdom"
 [5]: http://nodejs.org/api/http.html#http_http_incomingmessage "IncomingMessage"
