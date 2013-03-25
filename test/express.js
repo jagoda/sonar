@@ -1,0 +1,30 @@
+var express = require("express");
+
+module.exports = function () {
+
+    var application = express(),
+        nested      = express();
+    
+    function echo (request, response) {
+        response.json(request.body);
+    }
+    
+    // Configure top-level API.
+    
+    application.use(express.bodyParser());
+    
+    application.get("/json", function (request, response) {
+        response.json({ hello: "world" });
+    });
+    
+    application.post("/echo", echo);
+    
+    // Configure nested API.
+    
+    nested.post("/echo", echo);
+    
+    application.use("/nested", nested);
+    
+    return application;
+
+};

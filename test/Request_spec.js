@@ -86,44 +86,6 @@ describe("A Request", function () {
         expect(usingABadVersion).to.throw(/Invalid protocol version/);
     });
     
-    it("has a read-only method property", function () {
-        var request = new Request("GET", "/", "1.0");
-        
-        function checkRequest (request) {
-            expect(request).to.have.property("method", "GET");
-        }
-        
-        checkRequest(request);
-        request.method = "POST";
-        checkRequest(request);
-    });
-    
-    it("has a read-only URL property", function () {
-        var request = new Request("GET", "/", "1.0");
-        
-        function checkRequest (request) {
-            expect(request).to.have.property("url", "/");
-        }
-        
-        checkRequest(request);
-        request.url = "/path";
-        checkRequest(request);
-    });
-    
-    it("has a read-only version property", function () {
-        var request = new Request("GET", "/", "1.0");
-        
-        function checkRequest (request) {
-            expect(request).to.have.property("httpVersion", "1.0");
-            expect(request).to.have.property("httpVersionMajor", 1);
-            expect(request).to.have.property("httpVersionMinor", 0);
-        }
-        
-        checkRequest(request);
-        request.httpVersion = "1.1";
-        checkRequest(request);
-    });
-    
     it("can specify request headers", function () {
         var request = new Request();
         
