@@ -164,6 +164,21 @@ describe("A Sonar instance", function () {
             
             ping.end("hello");
         });
+        
+        it("can POST objects via the JSON API", function (done) {
+            var ping = sonar(app).json
+                .post("/echo", function (error, response) {
+                    expect(error).to.be.null;
+                    expect(response.body).to.deep.equal({
+                        method  : "POST",
+                        headers : { "content-type": "application/json" },
+                        content : "{\"hello\":\"world\"}"
+                    });
+                    done();
+                });
+            
+            ping.send({ hello: "world" });
+        });
     
     });
     
@@ -205,6 +220,17 @@ describe("A Sonar instance", function () {
             );
 
             ping.end(JSON.stringify({ hello: "world" }));
+        });
+        
+        it("can POST objects via the JSON API", function (done) {
+            var ping = sonar(app).json
+                .post("/echo", function (error, response) {
+                    expect(error).to.be.null;
+                    expect(response.body).to.deep.equal({ hello: "world" });
+                    done();
+                });
+            
+            ping.send({ hello: "world" });
         });
     
     });

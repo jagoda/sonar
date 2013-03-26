@@ -54,6 +54,19 @@ following options are available:
 Simulates a request to the handler. Returns a request object similar to
 [http.IncomingMessage][5].
 
+### sonar.json
+
+Provides a covenience API for sending JSON payloads. This API is exactly the
+same as the normal Sonar API except that it will automatically set the
+`Content-Type` header to `application/json` and will add a `send` method to
+the returned `Request` object. The send method takes an object to be sent
+(this will automatically be stringified). For example:
+
+    var ping = sonar(app).json.post("/path", function (error, response) {
+        . . .
+    });
+    ping.send({ hello: "world" });
+
 ## For the Slightly More Adventurous
 
 `Request` and `Response` objects can be constructed and passed to handler
