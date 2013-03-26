@@ -1,11 +1,16 @@
+// Load sonar first to execute the patch.
+require("../");
+
 var expect = require("chai").expect,
     jsdom  = require("jsdom");
-    
-require("../lib/jsdom_patch");
 
 describe("The jQuerify patch", function () {
 
     var HTML = "<html><head><title>test</title></head><body></body></html>";
+    
+    it("is applied when sonar is loaded", function () {
+        expect(jsdom.jQueryify._patched).to.equal(true);
+    });
 
     it("loads jQuery locally", function (done) {
         var document = jsdom.jsdom(HTML),

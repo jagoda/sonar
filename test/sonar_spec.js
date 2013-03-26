@@ -34,7 +34,7 @@ describe("A Sonar instance", function () {
         it("can parse an HTML response body", function (done) {
             sonar(app).get("/html", function (error, response) {
                 expect(error).to.be.null;
-                expect(response.body.$("body").text()).to.equal("Hello");
+                expect(response.body.$("div").text()).to.equal("Hello");
                 done();
             });
         });

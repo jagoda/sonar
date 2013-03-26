@@ -29,7 +29,7 @@ module.exports = function () {
         response.setHeader("Content-Type", "text/html");
         response.write("<html>");
         response.write("<body>");
-        response.write("Hello");
+        response.write("<div>Hello</div>");
         response.write("</body>");
         response.write("</html>");
         response.end();
