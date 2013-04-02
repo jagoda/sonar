@@ -3,6 +3,7 @@ var express = require("express");
 module.exports = function () {
 
     var application = express(),
+        expressAPI  = express(),
         nested      = express();
     
     function echo (request, response) {
@@ -24,6 +25,15 @@ module.exports = function () {
     nested.post("/echo", echo);
     
     application.use("/nested", nested);
+    
+    // Configure Express API test.
+    
+    expressAPI.use("/request/protocol", function (request, response) {
+        response.setHeader("Content-Type", "text/plain");
+        response.send(request.protocol);
+    });
+    
+    application.use(expressAPI);
     
     return application;
 

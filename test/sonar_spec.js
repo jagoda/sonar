@@ -232,6 +232,14 @@ describe("A Sonar instance", function () {
             
             ping.send({ hello: "world" });
         });
+        
+        it("can support the 'protocol' getter", function (done) {
+            sonar(app).get("/request/protocol", function (error, response) {
+                expect(error).to.be.null;
+                expect(response.body).to.equal("http");
+                done();
+            });
+        });
     
     });
 
