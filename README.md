@@ -40,6 +40,8 @@ following options are available:
     attempt to parse the response contents based on the response content type.
     If set to `false`, the request callback is responsible for calling
     `response.on("data", . . .)` and `response.on("end", . . .)` itself.
+ + **plugins** - An array of jQuery plugins to use with the response. See
+    `sonar.plugin` for more information.
 
 ### sonar.get(path, [headers], callback)
 ### sonar.post(path, [headers], callback)
