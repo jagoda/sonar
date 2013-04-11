@@ -67,6 +67,15 @@ the returned `Request` object. The send method takes an object to be sent
     });
     ping.send({ hello: "world" });
 
+### sonar.plugin(implementation)
+
+ + **implementation** - a function defining a custom jQuery plugin. The function
+    should expect the global jQuery object as its only argument.
+
+Defines a custom plugin to add to the jQuery API on the response object. This
+is a useful way to define custom test helpers. Returns a chainable reference to
+the `sonar` instance.
+
 ## For the Slightly More Adventurous
 
 `Request` and `Response` objects can be constructed and passed to handler
