@@ -64,6 +64,33 @@ describe("A Sonar instance", function () {
             });
         });
         
+        it("can specify jQuery plugins on the 'options' object", function (done) {
+            var plugins = [
+                    function ($) {
+                        $.hello = function () {
+                            return $("div");
+                        };
+                    },
+                    function ($) {
+                        $.fn.message = function () {
+                            return this.text();
+                        };
+                    }
+                ];
+                
+            sonar(app, { plugins: plugins })
+                .get("/html", function (error, response) {
+                     var hello;
+                    
+                    expect(error).to.be.null;
+                    
+                    hello = response.body.$.hello();
+                    expect(hello).to.have.property("length", 1);
+                    expect(hello.message()).to.equal("Hello");
+                    done();
+                });
+        });
+        
         it("will report errors parsing a response payload", function (done) {
             sonar(app).get("/error", function (error, response) {
                 expect(error).to.be.an.instanceof(Error);
