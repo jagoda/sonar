@@ -6,7 +6,7 @@ var connect     = require("./connect"),
 
 describe("A Sonar instance", function () {
 
-    describe("can interact with a Connect instance and can", function () {
+    describe("can interact with a Connect instance and", function () {
     
         var app = connect();
 
@@ -35,6 +35,31 @@ describe("A Sonar instance", function () {
             sonar(app).get("/html", function (error, response) {
                 expect(error).to.be.null;
                 expect(response.body.$("div").text()).to.equal("Hello");
+                done();
+            });
+        });
+        
+        it("can inject jQuery plugins", function (done) {
+            var instance = sonar(app);
+            
+            instance.plugin(function ($) {
+                $.hello = function () {
+                    return $("div");
+                };
+            }).plugin(function ($) {
+                $.fn.message = function () {
+                    return this.text();
+                };
+            });
+            
+            instance.get("/html", function (error, response) {
+                var hello;
+                
+                expect(error).to.be.null;
+                
+                hello = response.body.$.hello();
+                expect(hello).to.have.property("length", 1);
+                expect(hello.message()).to.equal("Hello");
                 done();
             });
         });
@@ -182,7 +207,7 @@ describe("A Sonar instance", function () {
     
     });
     
-    describe("can interact with an Express instance and can", function () {
+    describe("can interact with an Express instance and", function () {
     
         var app = express();
         
