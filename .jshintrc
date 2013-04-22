@@ -23,5 +23,7 @@
     "maxcomplexity" : false,
     "maxlen"        : 80,
     
+    "evil"          : true,
+    
     "node"          : true
 }
