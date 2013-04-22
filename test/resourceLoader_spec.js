@@ -116,4 +116,30 @@ describe("The resource loader patch", function () {
         done();
     });
     
+    it("will respect an ignore list", function (done) {
+        var cwd = process.cwd();
+        
+        process.chdir(path.join(__dirname, "data"));
+        
+        var included  = false,
+            ignore    = sonar(app),
+            requireJS = require.extensions[".js"];
+        
+        require.extensions[".js"] = function (module, filename) {
+            // Web marker is for the sake of the coverage report.
+            expect(filename).to.equal("front-end/static/global.script");
+            included = true;
+        };
+        ignore.get("/script", function (error, response) {
+            try {
+                expect(error).to.not.exist;
+                expect(included).to.be.false;
+            } finally {
+                require.extensions[".js"] = requireJS;
+                process.chdir(cwd);
+            }
+            done();
+        });
+    });
+    
 });
