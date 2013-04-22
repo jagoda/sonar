@@ -29,7 +29,7 @@ describe("The resource loader patch", function () {
         
         require.extensions[".js"] = function (module, filename) {
             // Web marker is for the sake of the coverage report.
-            expect(filename).to.equal("web-ui/static/global.script");
+            expect(filename).to.equal("*front-end* /static/global.script");
             included = true;
         };
         SONAR.get("/script", function (error, response) {
