@@ -27,6 +27,7 @@ describe("The jQuerify patch", function () {
     });
     
     it("can load a remote script", function (done) {
+        this.timeout(3000);
         var document = jsdom.jsdom(HTML),
             window   = document.createWindow();
         
