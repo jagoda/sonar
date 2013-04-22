@@ -26,6 +26,12 @@ look like:
 Similarly, Sonar will automatically parse JSON responses to objects and will
 gather all other responses into the `body` attribute as text.
 
+## Added Perks
+
+When run with [Cover][6], Sonar will add the ability to include coverage reports
+of your front-end code right along side your backend code. There's nothing to do
+other than invoke your test cases with [Cover][6].
+
 ## Usage Details
 
 ### sonar(application, [options])
@@ -105,3 +111,4 @@ instances directly if desired. For example:
 [3]: http://expressjs.com/ "Express"
 [4]: https://github.com/tmpvar/jsdom "jsdom"
 [5]: http://nodejs.org/api/http.html#http_http_incomingmessage "IncomingMessage"
+[6]: https://github.com/itay/node-cover.git "Cover"
