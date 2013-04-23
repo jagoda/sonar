@@ -32,6 +32,9 @@ When run with [Cover][6], Sonar will add the ability to include coverage reports
 of your front-end code right along side your backend code. There's nothing to do
 other than invoke your test cases with [Cover][6].
 
+**NOTE:** currently only external script dependencies are instrumented. Inline
+scripts will not be covered and will not appear in the coverage report.
+
 ## Usage Details
 
 ### sonar(application, [options])
