@@ -1,1 +1,3 @@
 window.message = "hello";
+/* provided by lib.script */
+foo();

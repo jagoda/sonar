@@ -12,13 +12,15 @@ describe("The resource loader patch", function () {
     app.use("/static", express.static(path.join(__dirname, "data")));
     
     app.get("/script", function (request, response) {
-        response.send("<html><body><script type='text/javascript' src='/static/global.script'></script></body></html>");
+        // lib.script is included so that it will show up in the coverage report.
+        response.send("<html><body><script type='text/javascript' src='/static/lib.script'></script><script type='text/javascript' src='/static/global.script'></script></body></html>");
     });
 
     it("can load external resources served by a sonar instance", function (done) {
         SONAR.get("/script", function (error, response) {
             expect(error).to.not.exist;
             expect(response.body).to.have.property("message", "hello");
+            expect(response.body).to.have.property("bar", "hello");
             done();
         });
     });
@@ -29,7 +31,7 @@ describe("The resource loader patch", function () {
         
         require.extensions[".js"] = function (module, filename) {
             // Web marker is for the sake of the coverage report.
-            expect(filename).to.equal("front-end/static/global.script");
+            expect(filename).to.match(/front-end\/static\/(lib|global).script/);
             included = true;
         };
         SONAR.get("/script", function (error, response) {
