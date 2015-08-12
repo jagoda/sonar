@@ -8,6 +8,9 @@
     "_pretest": "chasis lint",
     "test": "NODE_ENV=test chasis test"
   },
+  "engines": {
+    "node": ">=0.10, <0.13"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/jagoda/sonar.git"
