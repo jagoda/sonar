@@ -5,7 +5,7 @@
   "main": "lib/sonar.js",
   "scripts": {
     "coverage": "NODE_ENV=test chasis coverage",
-    "pretest": "chasis lint",
+    "_pretest": "chasis lint",
     "test": "NODE_ENV=test chasis test"
   },
   "repository": {
@@ -15,12 +15,13 @@
   "author": "Jeff Jagoda <jeffrey.jagoda@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "connect": "~2.7.3",
-    "jsdom": "~0.5.3"
+    "connect": "~3.4",
+    "jsdom": "~3.1.2"
   },
   "devDependencies": {
+    "body-parser": "^1.13.3",
     "chai": "~1.5.0",
     "chasis": "0.0.1",
-    "express": "~3.1.0"
+    "express": "^3.1"
   }
 }
