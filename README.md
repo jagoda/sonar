@@ -1,4 +1,4 @@
-sonar
+sonar [![Build Status](https://secure.travis-ci.org/mrcrgl/sonar.png)](http://travis-ci.org/mrcrgl/sonar)
 =====
 
 Sonar is a test tool for HTTP server instances in NodeJS. Sonar can be used with

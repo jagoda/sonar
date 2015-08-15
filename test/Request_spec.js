@@ -3,6 +3,7 @@ var connect                = require("connect"),
     express                = require("express"),
     EventEmitter           = require("events").EventEmitter,
     IncomingMessage        = require("http").IncomingMessage,
+    bodyParser = require('body-parser'),
     itIsAPassThroughStream = require("./streams").itIsAPassThroughStream,
     Request                = require("../").Request,
     Response               = require("../").Response;
@@ -135,7 +136,7 @@ describe("A Request", function () {
                 request  = new Request(),
                 response = new Response(request);
                 
-            app.use(connect.middleware.json());
+            app.use(bodyParser.json());
             app.use(function (request, response) {
                 expect(request.body).to.deep.equal(
                     {
@@ -170,7 +171,7 @@ describe("A Request", function () {
                 request  = new Request("GET", "/path"),
                 response = new Response(request);
                 
-            app.use(connect.middleware.json());
+            app.use(bodyParser.json());
             app.get("/path", function (request, response) {
                 expect(request.body).to.deep.equal(
                     {
