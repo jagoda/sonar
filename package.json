@@ -15,9 +15,10 @@
     "type": "git",
     "url": "git://github.com/mrcrgl/maja.git"
   },
-  "author": "Jeff Jagoda <jeffrey.jagoda@gmail.com>",
+  "author": "Marc Riegel <mail@mrcrgl.de>",
   "license": "MIT",
   "dependencies": {
+    "copy-obejct": "^1.0",
     "connect": "~3.4",
     "jsdom": "~3.1.2"
   },
