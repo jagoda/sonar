@@ -1,26 +1,31 @@
 {
-  "name": "sonar",
-  "version": "0.0.0",
+  "name": "maja",
+  "version": "2.0.0",
   "description": "HTTP request simulation tools.",
   "main": "lib/sonar.js",
   "scripts": {
     "coverage": "NODE_ENV=test chasis coverage",
-    "pretest": "chasis lint",
+    "_pretest": "chasis lint",
     "test": "NODE_ENV=test chasis test"
+  },
+  "engines": {
+    "node": ">=0.10, <0.13"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jagoda/sonar.git"
+    "url": "git://github.com/mrcrgl/maja.git"
   },
-  "author": "Jeff Jagoda <jeffrey.jagoda@gmail.com>",
+  "author": "Marc Riegel <mail@mrcrgl.de>",
   "license": "MIT",
   "dependencies": {
-    "connect": "~2.7.3",
-    "jsdom": "~0.5.3"
+    "copy-obejct": "^1.0",
+    "connect": "~3.4",
+    "jsdom": "~3.1.2"
   },
   "devDependencies": {
+    "body-parser": "^1.13.3",
     "chai": "~1.5.0",
     "chasis": "0.0.1",
-    "express": "~3.1.0"
+    "express": "^3.1"
   }
 }
